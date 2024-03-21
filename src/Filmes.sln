@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34616.47
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Filmes", "Filmes\Filmes.csproj", "{351A5C81-C391-45E8-B09E-59CB96438B46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Filmes.Api", "Filmes\Filmes.Api.csproj", "{351A5C81-C391-45E8-B09E-59CB96438B46}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "API", "API", "{5CBD8847-2EBF-4E37-B29C-64516D2BB4BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,6 +20,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{351A5C81-C391-45E8-B09E-59CB96438B46} = {5CBD8847-2EBF-4E37-B29C-64516D2BB4BB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {13A24F41-EC7B-4FE6-8ACB-9552C1AA9169}
