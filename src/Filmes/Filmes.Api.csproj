@@ -7,7 +7,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Filmes.Application\Filmes.Application.csproj" />
+    <ProjectReference Include="..\Filmes.Domain\Filmes.Domain.csproj" />
+    <ProjectReference Include="..\Filmes.Infra.Data\Filmes.Infra.Data.csproj" />
+    <ProjectReference Include="..\Filmes.Infra.Security\Filmes.Infra.Security.csproj" />
   </ItemGroup>
 
 </Project>

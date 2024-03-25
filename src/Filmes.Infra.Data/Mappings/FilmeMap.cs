@@ -28,7 +28,6 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
             .IsRequired();
 
         builder.Property(f => f.ImagemCapa)
-            .IsRequired()
-            .HasMaxLength(500);
+            .IsRequired(false);
     }
 }
