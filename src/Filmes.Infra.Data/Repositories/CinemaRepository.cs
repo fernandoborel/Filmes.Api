@@ -17,22 +17,29 @@ public class CinemaRepository : BaseRepository<Cinema>, ICinemaRepository
     public override async Task<Cinema> GetByIdAsync(int id)
     {
         return await _context.Cinemas
-                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
+                             .Include(c => c.Endereco)
                              .FirstOrDefaultAsync(c => c.Id == id);
     }
 
     public override async Task<IEnumerable<Cinema>> GetAllAsync()
     {
         return await _context.Cinemas
-                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
+                             .Include(c => c.Endereco)
+                             .Select(c => new Cinema
+                             {
+                                 Id = c.Id,
+                                 Nome = c.Nome,
+                                 EnderecoId = c.EnderecoId,
+                                 Endereco = c.Endereco
+                             })
                              .ToListAsync();
     }
 
     public async Task<IEnumerable<Cinema>> GetByCineAsync(string cine)
     {
         return await _context.Cinemas
-                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
-                             .Where(c => c.Nome == cine)
+                             .Include(c => c.Endereco)
+                             .Where(c => c.Nome.Contains(cine))
                              .ToListAsync();
     }
 

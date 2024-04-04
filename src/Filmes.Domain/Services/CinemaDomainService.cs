@@ -21,7 +21,7 @@ public class CinemaDomainService : ICinemaDomainService
     public async Task Atualizar(Cinema cinema)
     {
         var cinemaExistente = await _cinemaRepository.GetByIdAsync(cinema.Id);
-        if(cinemaExistente != null)
+        if (cinemaExistente != null)
         {
             cinemaExistente.Nome = cinema.Nome;
             cinemaExistente.Endereco = cinema.Endereco;
@@ -30,20 +30,17 @@ public class CinemaDomainService : ICinemaDomainService
 
             await _cinemaRepository.UpdateAsync(cinemaExistente);
         }
-
-        throw new NotImplementedException();
     }
 
     public async Task Remover(Cinema cinema)
     {
         var cinemaExistente = await _cinemaRepository.GetByIdAsync(cinema.Id);
-        if(cinemaExistente != null)
+        if (cinemaExistente != null)
         {
             await _cinemaRepository.DeleteAsync(cinemaExistente);
         }
-
-        throw new NotImplementedException();
     }
+
 
     public void Dispose()
     {

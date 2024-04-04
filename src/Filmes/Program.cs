@@ -1,9 +1,16 @@
 using Filmes.Api.Extensions;
-using Filmes.Api.Middlewares;
+using System.Text.Json.Serialization;
+//using Filmes.Api.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+
+builder.Services.AddControllersWithViews()
+    .AddJsonOptions(options =>
+    {
+        options.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve;
+    });
 
 builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
 
@@ -22,7 +29,8 @@ app.UseSwaggerUI();
 
 CorsExtension.UseCors(app);
 
-app.UseMiddleware<ExceptionMiddleware>();
+//comentei essa parte para realizar novos testes, após testes descomentar
+//app.UseMiddleware<ExceptionMiddleware>();
 
 app.MapControllers();
 

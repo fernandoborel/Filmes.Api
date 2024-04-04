@@ -9,6 +9,4 @@ public class Filme
     public int Duracao { get; set; }
 
     public byte[] ImagemCapa { get; set; }
-
-    public virtual ICollection<Sessao> Sessoes { get; set; }
 }
