@@ -20,8 +20,20 @@ public class EntityFrameworkExtension
             options.UseSqlServer(connectionString);
         });
 
+        #region Interfaces Filmes
+
         builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
         builder.Services.AddScoped<IFilmeAppService, FilmeAppService>();
         builder.Services.AddScoped<IFilmeDomainService, FilmeDomainService>();
+
+        #endregion
+
+        #region Interfaces Cinemas
+
+        builder.Services.AddScoped<ICinemaRepository, CinemaRepository>();
+        builder.Services.AddScoped<ICinemaAppService, CinemaAppService>();
+        builder.Services.AddScoped<ICinemaDomainService, CinemaDomainService>();
+
+        #endregion
     }
 }

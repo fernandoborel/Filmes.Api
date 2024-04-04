@@ -14,9 +14,35 @@ public class CinemaRepository : BaseRepository<Cinema>, ICinemaRepository
         _context = context;
     }
 
+    public override async Task<Cinema> GetByIdAsync(int id)
+    {
+        return await _context.Cinemas
+                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
+                             .FirstOrDefaultAsync(c => c.Id == id);
+    }
+
+    public override async Task<IEnumerable<Cinema>> GetAllAsync()
+    {
+        return await _context.Cinemas
+                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
+                             .ToListAsync();
+    }
+
     public async Task<IEnumerable<Cinema>> GetByCineAsync(string cine)
     {
-        var cinemaExistente = await _context.Cinemas.Where(c => c.Nome == cine).ToListAsync();
-        return cinemaExistente;
+        return await _context.Cinemas
+                             .Include(c => c.Endereco) // Carregar explicitamente a propriedade endereco
+                             .Where(c => c.Nome == cine)
+                             .ToListAsync();
+    }
+
+    public async Task AdicionarEndereco(Endereco endereco)
+    {
+        _context.Enderecos.Add(endereco);
+    }
+
+    public async Task AdicionarCinema(Cinema cinema)
+    {
+        _context.Cinemas.Add(cinema);
     }
 }
