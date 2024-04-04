@@ -22,10 +22,5 @@ public class CinemaMap : IEntityTypeConfiguration<Cinema>
             .HasForeignKey<Cinema>(c => c.EnderecoId)
             .IsRequired()
             .OnDelete(DeleteBehavior.Cascade); // Exemplo de como configurar a exclusão em cascata
-
-        // Relacionamento com Filmes
-        builder.HasMany(c => c.Sessoes)
-            .WithOne(s => s.Cinema)
-            .HasForeignKey(s => s.CinemaId);
     }
 }
