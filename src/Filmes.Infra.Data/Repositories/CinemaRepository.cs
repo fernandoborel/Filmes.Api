@@ -18,6 +18,8 @@ public class CinemaRepository : BaseRepository<Cinema>, ICinemaRepository
     {
         return await _context.Cinemas
                              .Include(c => c.Endereco)
+                             .Include(c => c.Sessoes)
+                                .ThenInclude(s => s.Filme)
                              .FirstOrDefaultAsync(c => c.Id == id);
     }
 
@@ -51,5 +53,10 @@ public class CinemaRepository : BaseRepository<Cinema>, ICinemaRepository
     public async Task AdicionarCinema(Cinema cinema)
     {
         _context.Cinemas.Add(cinema);
+    }
+
+    public async Task AdicionarSessao(Sessao sessao)
+    {
+        _context.Sessoes.Add(sessao);
     }
 }
