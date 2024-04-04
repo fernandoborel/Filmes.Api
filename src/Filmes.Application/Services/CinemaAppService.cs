@@ -16,12 +16,19 @@ public class CinemaAppService : ICinemaAppService
 
     public async Task Adicionar(CriarCinemaDto dto)
     {
-        var cine = new Cinema
+        var endereco = new Endereco
         {
-            Nome = dto.Nome,
+            Logradouro = dto.Logradouro,
+            Numero = dto.Numero
         };
 
-        await _cinemaDomainService.Adicionar(cine);
+        var cinema = new Cinema
+        {
+            Nome = dto.Nome,
+            Endereco = endereco
+        };
+
+        await _cinemaDomainService.Adicionar(cinema);
     }
 
     public async Task Atualizar(AtualizarCinemaDto dto)
