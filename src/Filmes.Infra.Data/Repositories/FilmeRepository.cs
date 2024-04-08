@@ -16,7 +16,17 @@ public class FilmeRepository : BaseRepository<Filme>, IFilmeRepository
 
     public async Task<IEnumerable<Filme>> GetByTitleAsync(string title)
     {
-        return await _context.Filmes.Where(f => f.Titulo.Contains(title)).ToListAsync();
+        return await _context.Filmes
+                            .Include(f => f.Sessoes)
+                            .Where(f => f.Titulo.Contains(title))
+                            .ToListAsync();
+    }
+
+    public override async Task<IEnumerable<Filme>> GetAllAsync()
+    {
+        return await _context.Filmes
+                            .Include(f => f.Sessoes)
+                            .ToListAsync();
     }
 }
 
