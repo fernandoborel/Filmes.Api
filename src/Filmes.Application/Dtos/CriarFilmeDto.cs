@@ -20,6 +20,9 @@ public class CriarFilmeDto
     [Required(ErrorMessage = "O campo {0} é obrigatório.")]
     public int Duracao { get; set; }
 
-    [Required(ErrorMessage = "O campo {0} é obrigatório.")]
+    //[Required(ErrorMessage = "O campo {0} é obrigatório.")]
     public IFormFile ImagemCapa { get; set; }
+
+    // Lista de sessões associadas ao filme
+    public List<CriarSessaoDto> Sessoes { get; set; }
 }

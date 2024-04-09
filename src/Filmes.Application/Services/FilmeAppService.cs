@@ -19,6 +19,7 @@ public class FilmeAppService : IFilmeAppService
     {
         var foto = dto.ImagemCapa?.OpenReadStream();
 
+        // Criar o filme sem associar sessões
         var filme = new Filme
         {
             Titulo = dto.Titulo,
@@ -28,8 +29,30 @@ public class FilmeAppService : IFilmeAppService
             ImagemCapa = LerFotoComoArrayDeBytes(foto),
         };
 
+        // Adicionar o filme ao banco de dados
         await _filmeDomainService.Adicionar(filme);
+
+        // Agora que o filme foi adicionado ao banco de dados, ele terá um ID único
+        // Podemos associar as sessões ao filme com o ID gerado
+        if (dto.Sessoes != null && dto.Sessoes.Any())
+        {
+            foreach (var sessaoDto in dto.Sessoes)
+            {
+                var sessao = new Sessao
+                {
+                    Horario = sessaoDto.Horario,
+                    FilmeId = filme.Id,
+                    CinemaId = sessaoDto.CinemaId
+                };
+                filme.Sessoes.Add(sessao);
+            }
+        }
+
+        // Atualizar o filme com as sessões associadas
+        await _filmeDomainService.Atualizar(filme);
     }
+
+
 
     public async Task Atualizar(AtualizarFilmeDto dto)
     {
