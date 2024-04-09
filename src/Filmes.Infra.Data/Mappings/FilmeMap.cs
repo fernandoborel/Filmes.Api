@@ -29,5 +29,11 @@ public class FilmeMap : IEntityTypeConfiguration<Filme>
 
         builder.Property(f => f.ImagemCapa)
             .IsRequired(false);
+
+        // Mapeamento das sessões
+        builder.HasMany(f => f.Sessoes)
+               .WithOne(s => s.Filme)
+               .HasForeignKey(s => s.FilmeId)
+               .IsRequired(false);
     }
 }
