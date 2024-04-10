@@ -32,6 +32,9 @@ CorsExtension.UseCors(app);
 //comentei essa parte para realizar novos testes, após testes descomentar
 //app.UseMiddleware<ExceptionMiddleware>();
 
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapControllers();
 
 app.Run();

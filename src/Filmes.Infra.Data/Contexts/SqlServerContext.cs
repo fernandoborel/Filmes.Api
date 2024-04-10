@@ -14,6 +14,7 @@ public class SqlServerContext : DbContext
         modelBuilder.ApplyConfiguration(new CinemaMap());
         modelBuilder.ApplyConfiguration(new EnderecoMap());
         modelBuilder.ApplyConfiguration(new SessaoMap());
+        modelBuilder.ApplyConfiguration(new UsuarioMap());
 
         modelBuilder.Entity<Filme>()
             .Property(f => f.Id)
@@ -24,4 +25,5 @@ public class SqlServerContext : DbContext
     public DbSet<Cinema> Cinemas { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
     public DbSet<Sessao> Sessoes { get; set; }
+    public DbSet<Usuario> Usuarios { get; set; }
 }
