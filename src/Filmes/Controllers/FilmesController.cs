@@ -1,9 +1,11 @@
 ﻿using Filmes.Application.Dtos;
 using Filmes.Application.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Filmes.Api.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class FilmesController : ControllerBase
