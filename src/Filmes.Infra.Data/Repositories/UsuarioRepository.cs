@@ -29,7 +29,8 @@ public class UsuarioRepository : BaseRepository<Usuario>, IUsuarioRepository
 
     public async Task<Usuario> Get(string email)
     {
-        return await _context.Usuarios.FirstOrDefaultAsync(u => u.Email == email);
+        return await _context.Usuarios
+            .FirstOrDefaultAsync(u => u.Email.Equals(email));
     }
 
     public async Task<Usuario> Get(string email, string senha)

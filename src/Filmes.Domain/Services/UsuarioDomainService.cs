@@ -63,6 +63,7 @@ public class UsuarioDomainService : IUsuarioDomainService
             return new AuthorizationModel
             {
                 IdUsuario = user.IdUsuario,
+                Nome = user.Nome,
                 Email = user.Email,
                 AccessToken = _authorizationSecurity.CreateToken(user)
             };
