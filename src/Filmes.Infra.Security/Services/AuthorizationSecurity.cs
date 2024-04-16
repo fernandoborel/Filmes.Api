@@ -1,6 +1,7 @@
 ﻿using Filmes.Domain.Interfaces.Security;
 using Filmes.Domain.Models;
 using Filmes.Infra.Security.Settings;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -12,9 +13,9 @@ public class AuthorizationSecurity : IAuthorizationSecurity
 {
     private readonly JwtSettings _jwtSettings;
 
-    public AuthorizationSecurity(JwtSettings jwtSettings)
+    public AuthorizationSecurity(IOptions<JwtSettings> jwtSettings)
     {
-        _jwtSettings = jwtSettings;
+        _jwtSettings = jwtSettings.Value;
     }
 
     public string CreateToken(Usuario usuario)
@@ -27,7 +28,7 @@ public class AuthorizationSecurity : IAuthorizationSecurity
             Subject = new ClaimsIdentity(new Claim[]
             {
                 new Claim(ClaimTypes.Name, usuario.Nome),
-                new Claim(ClaimTypes.Email, usuario.Email),
+                new Claim(ClaimTypes.Role, "USER"),
             }),
 
             Expires = DateTime.UtcNow.AddHours(_jwtSettings.ExpirationHours),

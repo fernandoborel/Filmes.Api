@@ -19,6 +19,7 @@ builder.Services.AddRouting(opt => opt.LowercaseUrls = true);
 SwaggerExtension.AddSwagger(builder);
 EntityFrameworkExtension.AddEntityFramework(builder);
 CorsExtension.AddCors(builder);
+JwtExtension.AddJwtBearerSecurity(builder);
 
 #endregion
 
